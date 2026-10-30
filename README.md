@@ -39,12 +39,27 @@ A powerful and highly customizable multi-select dropdown widget for Flutter. Sup
 
 ## Installation
 
-Add to your `pubspec.yaml`:
+This fork's `material-ui-migration` branch requires Flutter 3.47 or newer and
+Dart 3.13 or newer. It uses `material_ui` rather than the Flutter SDK's legacy
+Material library.
+
+Add the fork and `material_ui` to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  multi_dropdown: ^3.2.1
+  material_ui: ^1.9.0
+  multi_dropdown:
+    git:
+      url: https://github.com/ZoftPranav/multiselect-dropdown.git
+      ref: material-ui-migration
 ```
+
+Run `flutter pub get`. Import `package:material_ui/material_ui.dart` alongside
+`package:multi_dropdown/multi_dropdown.dart`, and use the standalone Material
+types for dropdown decorations, including `InputBorder` and `InputDecoration`.
+Legacy `package:flutter/material.dart` versions of those types are not
+interchangeable. Apps using other legacy Material dependencies may still need
+the compatibility bridge described in the `material_ui` migration guide.
 
 ## Quick Start
 
@@ -83,11 +98,16 @@ MultiDropdown<String>(
 ### Searchable Dropdown
 
 ```dart
+import 'package:material_ui/material_ui.dart';
+import 'package:multi_dropdown/multi_dropdown.dart';
+
 MultiDropdown<String>(
   items: items,
   searchEnabled: true,
-  searchDecoration: SearchFieldDecoration(
+  searchDecoration: const SearchFieldDecoration(
     hintText: 'Type to search...',
+    border: OutlineInputBorder(),
+    focusedBorder: OutlineInputBorder(),
   ),
 );
 ```

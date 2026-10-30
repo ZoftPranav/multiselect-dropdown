@@ -1,5 +1,13 @@
 # ChangeLOG
 
+## Unreleased (material_ui migration)
+
+### Breaking changes
+
+- Migrated the package's Material widgets and public Material types to
+  `package:material_ui/material_ui.dart`. Applications must use the standalone
+  Material types for decorations and run Flutter 3.47+ with Dart 3.13+.
+
 ## 3.2.2
 
 ### Changed
