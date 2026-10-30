@@ -25,8 +25,9 @@ void main() {
       controller.dispose();
     });
 
-    testWidgets('select all toggle appears when showSelectAll is true',
-        (tester) async {
+    testWidgets('select all toggle appears when showSelectAll is true', (
+      tester,
+    ) async {
       final controller = MultiSelectController<int>();
       await tester.pumpWidget(
         buildTestApp(
@@ -45,8 +46,9 @@ void main() {
       controller.dispose();
     });
 
-    testWidgets('select all toggle is hidden in single-select mode',
-        (tester) async {
+    testWidgets('select all toggle is hidden in single-select mode', (
+      tester,
+    ) async {
       final controller = MultiSelectController<int>();
       await tester.pumpWidget(
         buildTestApp(
@@ -131,8 +133,9 @@ void main() {
     // Custom labels
     // =========================================================================
 
-    testWidgets('custom labels from DropdownDecoration are used',
-        (tester) async {
+    testWidgets('custom labels from DropdownDecoration are used', (
+      tester,
+    ) async {
       final controller = MultiSelectController<int>();
       await tester.pumpWidget(
         buildTestApp(

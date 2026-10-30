@@ -136,8 +136,8 @@ class MultiDropdown<T extends Object> extends StatefulWidget {
     this.onSearchChange,
     this.closeOnBackButton = false,
     Key? key,
-  })  : future = null,
-        super(key: key);
+  }) : future = null,
+       super(key: key);
 
   /// Creates a multiselect dropdown widget with future request.
   ///
@@ -189,8 +189,8 @@ class MultiDropdown<T extends Object> extends StatefulWidget {
     this.onSearchChange,
     this.closeOnBackButton = false,
     Key? key,
-  })  : items = const [],
-        super(key: key);
+  }) : items = const [],
+       super(key: key);
 
   /// The list of dropdown items.
   ///
@@ -515,7 +515,8 @@ class _MultiDropdownState<T extends Object> extends State<MultiDropdown<T>> {
                 showOnTop = true;
                 break;
               case ExpandDirection.auto:
-                showOnTop = spaceBelow < widget.dropdownDecoration.maxHeight &&
+                showOnTop =
+                    spaceBelow < widget.dropdownDecoration.maxHeight &&
                     spaceAbove > spaceBelow;
                 break;
             }
@@ -531,7 +532,8 @@ class _MultiDropdownState<T extends Object> extends State<MultiDropdown<T>> {
 
             final mediaQuery = MediaQuery.of(context);
             final viewPadding = mediaQuery.viewPadding;
-            final availableSpace = (showOnTop ? spaceAbove : spaceBelow) -
+            final availableSpace =
+                (showOnTop ? spaceAbove : spaceBelow) -
                 viewPadding.top -
                 viewPadding.bottom -
                 widget.dropdownDecoration.marginTop.abs() -
@@ -554,10 +556,12 @@ class _MultiDropdownState<T extends Object> extends State<MultiDropdown<T>> {
                 CompositedTransformFollower(
                   link: _layerLink,
                   showWhenUnlinked: false,
-                  targetAnchor:
-                      showOnTop ? Alignment.topLeft : Alignment.bottomLeft,
-                  followerAnchor:
-                      showOnTop ? Alignment.bottomLeft : Alignment.topLeft,
+                  targetAnchor: showOnTop
+                      ? Alignment.topLeft
+                      : Alignment.bottomLeft,
+                  followerAnchor: showOnTop
+                      ? Alignment.bottomLeft
+                      : Alignment.topLeft,
                   offset: marginOffset,
                   child: RepaintBoundary(
                     child: _Dropdown<T>(
@@ -658,12 +662,14 @@ class _MultiDropdownState<T extends Object> extends State<MultiDropdown<T>> {
       );
     }
 
-    final border = fieldDecoration.border ??
+    final border =
+        fieldDecoration.border ??
         OutlineInputBorder(
           borderRadius: BorderRadius.circular(
             fieldDecoration.borderRadius,
           ),
-          borderSide: theme.inputDecorationTheme.border?.borderSide ??
+          borderSide:
+              theme.inputDecorationTheme.border?.borderSide ??
               const BorderSide(),
         );
 
@@ -717,8 +723,9 @@ class _MultiDropdownState<T extends Object> extends State<MultiDropdown<T>> {
             child: const Icon(Icons.clear),
             onTap: () {
               _dropdownController.clearAll();
-              _formFieldKey.currentState
-                  ?.didChange(_dropdownController.selectedItems);
+              _formFieldKey.currentState?.didChange(
+                _dropdownController.selectedItems,
+              );
             },
           ),
         ),
@@ -809,7 +816,8 @@ class _MultiDropdownState<T extends Object> extends State<MultiDropdown<T>> {
           padding: chipDecoration.padding,
           child: Text(
             overflowLabel,
-            style: chipDecoration.labelStyle ??
+            style:
+                chipDecoration.labelStyle ??
                 TextStyle(
                   fontSize: 12,
                   color: Theme.of(context).colorScheme.onSurfaceVariant,
@@ -863,8 +871,9 @@ class _MultiDropdownState<T extends Object> extends State<MultiDropdown<T>> {
       duration: const Duration(milliseconds: 200),
       decoration: BoxDecoration(
         borderRadius: chipDecoration.borderRadius,
-        color:
-            widget.enabled ? resolvedChipBg : theme.disabledColor.withAlpha(30),
+        color: widget.enabled
+            ? resolvedChipBg
+            : theme.disabledColor.withAlpha(30),
         border: chipDecoration.border,
       ),
       padding: chipDecoration.padding,
@@ -876,7 +885,8 @@ class _MultiDropdownState<T extends Object> extends State<MultiDropdown<T>> {
               option.label,
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
-              style: chipDecoration.labelStyle?.copyWith(
+              style:
+                  chipDecoration.labelStyle?.copyWith(
                     color: widget.enabled
                         ? chipDecoration.labelStyle?.color
                         : theme.disabledColor,
@@ -903,7 +913,8 @@ class _MultiDropdownState<T extends Object> extends State<MultiDropdown<T>> {
                   child: SizedBox(
                     width: 16,
                     height: 16,
-                    child: chipDecoration.deleteIcon ??
+                    child:
+                        chipDecoration.deleteIcon ??
                         Icon(
                           Icons.close,
                           size: 16,
@@ -977,8 +988,9 @@ class _MultiDropdownState<T extends Object> extends State<MultiDropdown<T>> {
                         height: 4,
                         margin: const EdgeInsets.symmetric(vertical: 12),
                         decoration: BoxDecoration(
-                          color: theme.colorScheme.onSurfaceVariant
-                              .withValues(alpha: 0.4),
+                          color: theme.colorScheme.onSurfaceVariant.withValues(
+                            alpha: 0.4,
+                          ),
                           borderRadius: BorderRadius.circular(2),
                         ),
                       ),
@@ -1023,7 +1035,7 @@ class _MultiDropdownState<T extends Object> extends State<MultiDropdown<T>> {
                                 controller: scrollController,
                                 padding:
                                     widget.dropdownDecoration.listPadding ??
-                                        EdgeInsets.zero,
+                                    EdgeInsets.zero,
                                 itemCount: _dropdownController.items.length,
                                 separatorBuilder: (_, __) =>
                                     widget.itemSeparator ??

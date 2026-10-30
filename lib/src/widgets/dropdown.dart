@@ -87,13 +87,9 @@ class _Dropdown<T> extends StatefulWidget {
 /// Represents either a group header or a dropdown item in the
 /// flattened list used for rendering grouped dropdowns.
 class _GroupEntry<T> {
-  _GroupEntry.header(this.groupLabel)
-      : item = null,
-        isHeader = true;
+  _GroupEntry.header(this.groupLabel) : item = null, isHeader = true;
 
-  _GroupEntry.item(this.item)
-      : groupLabel = null,
-        isHeader = false;
+  _GroupEntry.item(this.item) : groupLabel = null, isHeader = false;
 
   final String? groupLabel;
   final DropdownItem<T>? item;
@@ -111,11 +107,13 @@ class _DropdownState<T> extends State<_Dropdown<T>>
 
   static const Map<ShortcutActivator, Intent> _webShortcuts =
       <ShortcutActivator, Intent>{
-    SingleActivator(LogicalKeyboardKey.arrowDown):
-        DirectionalFocusIntent(TraversalDirection.down),
-    SingleActivator(LogicalKeyboardKey.arrowUp):
-        DirectionalFocusIntent(TraversalDirection.up),
-  };
+        SingleActivator(LogicalKeyboardKey.arrowDown): DirectionalFocusIntent(
+          TraversalDirection.down,
+        ),
+        SingleActivator(LogicalKeyboardKey.arrowUp): DirectionalFocusIntent(
+          TraversalDirection.up,
+        ),
+      };
 
   /// Whether this dropdown is using grouped mode.
   bool get _isGrouped => widget.groups != null && widget.groups!.isNotEmpty;
@@ -152,15 +150,16 @@ class _DropdownState<T> extends State<_Dropdown<T>>
       parent: _animationController,
       curve: widget.decoration.animationCurve,
     );
-    _slideAnimation = Tween<Offset>(
-      begin: const Offset(0, -0.05),
-      end: Offset.zero,
-    ).animate(
-      CurvedAnimation(
-        parent: _animationController,
-        curve: widget.decoration.animationCurve,
-      ),
-    );
+    _slideAnimation =
+        Tween<Offset>(
+          begin: const Offset(0, -0.05),
+          end: Offset.zero,
+        ).animate(
+          CurvedAnimation(
+            parent: _animationController,
+            curve: widget.decoration.animationCurve,
+          ),
+        );
     unawaited(_animationController.forward());
   }
 
@@ -258,7 +257,8 @@ class _DropdownState<T> extends State<_Dropdown<T>>
         : widget.decoration.selectAllText;
 
     // Disable select all if maxSelections would be exceeded
-    final enabled = allSelected ||
+    final enabled =
+        allSelected ||
         widget.maxSelections == 0 ||
         widget.items.length <= widget.maxSelections;
 
@@ -359,7 +359,8 @@ class _DropdownState<T> extends State<_Dropdown<T>>
     required bool isFirst,
   }) {
     final decoration = widget.groupHeaderDecoration;
-    final textStyle = decoration.textStyle ??
+    final textStyle =
+        decoration.textStyle ??
         theme.textTheme.labelLarge?.copyWith(
           color: theme.colorScheme.onSurfaceVariant,
           fontWeight: FontWeight.w600,
@@ -390,24 +391,24 @@ class _DropdownState<T> extends State<_Dropdown<T>>
 
     final disabledColor =
         widget.dropdownItemDecoration.disabledBackgroundColor ??
-            widget.dropdownItemDecoration.backgroundColor?.withAlpha(100);
+        widget.dropdownItemDecoration.backgroundColor?.withAlpha(100);
 
     final tileColor = option.disabled
         ? disabledColor
         : option.selected
-            ? widget.dropdownItemDecoration.selectedBackgroundColor
-            : widget.dropdownItemDecoration.backgroundColor;
+        ? widget.dropdownItemDecoration.selectedBackgroundColor
+        : widget.dropdownItemDecoration.backgroundColor;
 
     final trailing = option.disabled
         ? widget.dropdownItemDecoration.disabledIcon
         : option.selected
-            ? AnimatedScale(
-                scale: 1,
-                duration: const Duration(milliseconds: 200),
-                curve: Curves.elasticOut,
-                child: widget.dropdownItemDecoration.selectedIcon,
-              )
-            : null;
+        ? AnimatedScale(
+            scale: 1,
+            duration: const Duration(milliseconds: 200),
+            curve: Curves.elasticOut,
+            child: widget.dropdownItemDecoration.selectedIcon,
+          )
+        : null;
 
     return AnimatedContainer(
       duration: const Duration(milliseconds: 200),
@@ -427,15 +428,17 @@ class _DropdownState<T> extends State<_Dropdown<T>>
           enabled: !option.disabled,
           selected: option.selected,
           visualDensity: VisualDensity.adaptivePlatformDensity,
-          focusColor:
-              widget.dropdownItemDecoration.backgroundColor?.withAlpha(100),
-          selectedColor: widget.dropdownItemDecoration.selectedTextColor ??
+          focusColor: widget.dropdownItemDecoration.backgroundColor?.withAlpha(
+            100,
+          ),
+          selectedColor:
+              widget.dropdownItemDecoration.selectedTextColor ??
               theme.colorScheme.onSurface,
           textColor: option.disabled
               ? widget.dropdownItemDecoration.disabledTextColor ??
-                  theme.disabledColor
+                    theme.disabledColor
               : widget.dropdownItemDecoration.textColor ??
-                  theme.colorScheme.onSurface,
+                    theme.colorScheme.onSurface,
           tileColor: Colors.transparent,
           selectedTileColor: Colors.transparent,
           onTap: () {

@@ -87,8 +87,9 @@ void main() {
     // Title shown from labelText
     // =========================================================================
 
-    testWidgets('bottom sheet shows title from fieldDecoration.labelText',
-        (tester) async {
+    testWidgets('bottom sheet shows title from fieldDecoration.labelText', (
+      tester,
+    ) async {
       final controller = MultiSelectController<int>();
       await tester.pumpWidget(
         buildTestApp(

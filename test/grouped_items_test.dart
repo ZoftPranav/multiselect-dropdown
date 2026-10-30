@@ -41,8 +41,9 @@ void main() {
     // Widget rendering — group headers
     // =========================================================================
 
-    testWidgets('renders group headers when groups are provided',
-        (tester) async {
+    testWidgets('renders group headers when groups are provided', (
+      tester,
+    ) async {
       final controller = MultiSelectController<int>();
       await tester.pumpWidget(
         buildTestApp(
@@ -84,8 +85,9 @@ void main() {
       controller.dispose();
     });
 
-    testWidgets('items without groups renders flat list (backward compat)',
-        (tester) async {
+    testWidgets('items without groups renders flat list (backward compat)', (
+      tester,
+    ) async {
       final controller = MultiSelectController<int>();
       await tester.pumpWidget(
         buildTestApp(

@@ -21,11 +21,8 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Format and capture changes
-        run: |
-          dart format .
-          git diff | gzip -c | base64 -w0
-          echo
+      - name: Check formatting
+        run: dart format --set-exit-if-changed .
 
       - name: Analyze
         run: dart analyze lib/

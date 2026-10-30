@@ -6,8 +6,9 @@ import 'test_helpers.dart';
 
 void main() {
   for (final mode in DropdownMode.values) {
-    testWidgets('standalone Material search borders work in $mode',
-        (tester) async {
+    testWidgets('standalone Material search borders work in $mode', (
+      tester,
+    ) async {
       const border = OutlineInputBorder(
         borderSide: BorderSide(color: Colors.blue),
       );
@@ -45,7 +46,10 @@ void main() {
       await tester.tap(search);
       await tester.pumpAndSettle();
       expect(
-        tester.widget<EditableText>(find.byType(EditableText)).focusNode.hasFocus,
+        tester
+            .widget<EditableText>(find.byType(EditableText))
+            .focusNode
+            .hasFocus,
         isTrue,
       );
 
@@ -57,7 +61,10 @@ void main() {
       FocusManager.instance.primaryFocus?.unfocus();
       await tester.pumpAndSettle();
       expect(
-        tester.widget<EditableText>(find.byType(EditableText)).focusNode.hasFocus,
+        tester
+            .widget<EditableText>(find.byType(EditableText))
+            .focusNode
+            .hasFocus,
         isFalse,
       );
       expect(tester.takeException(), isNull);
@@ -81,8 +88,9 @@ void main() {
     await tester.tap(find.byType(InkWell).first);
     await tester.pumpAndSettle();
 
-    final decoration =
-        tester.widget<TextField>(find.byType(TextField)).decoration!;
+    final decoration = tester
+        .widget<TextField>(find.byType(TextField))
+        .decoration!;
     expect(decoration.border, isNull);
     expect(decoration.focusedBorder, isNull);
     expect(tester.takeException(), isNull);
